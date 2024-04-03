@@ -29,6 +29,14 @@ public class MemoryUserRepository {
         return users.get(userId);
     }
 
+    public boolean existUserById(String userId) {
+        return users.containsKey(userId);
+    }
+
+    public void delete() {
+        users.remove("user");
+    }
+
     public Collection<User> findAll() {
         return users.values();
     }

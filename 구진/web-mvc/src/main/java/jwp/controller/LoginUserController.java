@@ -23,12 +23,13 @@ public class LoginUserController extends HttpServlet {
       req.getParameter("password"));
 
     User user = MemoryUserRepository.getInstance().findUserById(loginUser.getUserId());
-    if (!user.matchPassword(loginUser.getPassword())) {
-      // TODO : 로그인 실패
-    }
 
+    if (!user.matchPassword(loginUser.getPassword())) {
+      resp.sendRedirect("/user/login/fail");
+      return;
+    }
     HttpSession session = req.getSession();
-    session.setAttribute("user", user);
+    session.setAttribute("userId", user.getUserId());
     resp.sendRedirect("/");
   }
 

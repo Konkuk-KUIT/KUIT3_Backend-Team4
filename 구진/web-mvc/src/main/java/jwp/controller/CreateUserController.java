@@ -22,7 +22,7 @@ public class CreateUserController extends HttpServlet {
 
     userRepository.addUser(user);
 
-    resp.sendRedirect("/user/userList");
+    resp.sendRedirect("/user/login");
   }
 
   @Override
