@@ -25,7 +25,7 @@ public class UpdateUser {
     return email;
   }
 
-  public static UpdateUser of(HttpServletRequest request) {
+  public static UpdateUser from(HttpServletRequest request) {
     return new UpdateUser(
       request.getParameter("password"),
       request.getParameter("name"),

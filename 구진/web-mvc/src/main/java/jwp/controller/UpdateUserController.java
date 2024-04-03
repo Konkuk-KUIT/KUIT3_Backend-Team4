@@ -21,13 +21,20 @@ public class UpdateUserController extends HttpServlet {
   @Override
   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-    User requestUser = User.from(req);
+    String userId = (String) req.getSession(false).getAttribute("userId");
 
-    User user = userRepository.findUserById(requestUser.getUserId());
+    if (userId == null || !userRepository.existUserById(userId)) {
+      resp.sendRedirect("/user/login");
+      return;
+    }
+
+    UpdateUser requestUser = UpdateUser.from(req);
+
+    User user = userRepository.findUserById(userId);
     user.update(requestUser);
     userRepository.changeUserInfo(user);
 
-    resp.sendRedirect("/user/userList");
+    resp.sendRedirect("/user/user-list");
   }
 
   @Override

@@ -33,7 +33,7 @@ public class User {
         return email;
     }
 
-    public void update(User updateUser) {
+    public void update(UpdateUser updateUser) {
         this.password = updateUser.getPassword();
         this.name = updateUser.getName();
         this.email = updateUser.getEmail();
